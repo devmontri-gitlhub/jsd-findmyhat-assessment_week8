@@ -24,7 +24,6 @@ async function fnActionChoice(choice) {
                             console.clear();
 
                                     if (choice==='1') {
-                                        console.log('คุณเลือก: ' + choice + ' คุณได้เลือกเริ่มเล่นเกม');
                                         const name = prompt('กรุณากรอกชื่อตัวละครของคุณค่ะ >> '); 
                                         return name;
                                     }
@@ -169,20 +168,26 @@ async function fnCheckMode(typegame) {
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 /*--------------------- Start : Main Program ----------------------------*/  
-console.clear()
 
-console.log('=== ยินดีตอนรับเข้าสู๋ Find Your Hat ===');
-console.log('1. เริ่มเกม (Start Game)');
-console.log('2. ออกจากเกม (Exit)');
-const choice = prompt('เลือกรายการ (1 หรือ 2) >> ');
-const name = await fnActionChoice(choice);
-console.log('ยินดีต้อนรับเข้าสู่เกม Find Your Hat, ' + name + '!');
+async function main() {
+    while (true) {
+            console.clear()
 
-const typegame = await fnTypeGame();
+            console.log('=== ยินดีตอนรับเข้าสู๋ Find Your Hat ===');
+            console.log('1. เริ่มเกม (Start Game)');
+            console.log('2. ออกจากเกม (Exit)');
+            const choice = prompt('เลือกรายการ (1 หรือ 2) >> ');
+            const name = await fnActionChoice(choice);
+            console.log('ยินดีต้อนรับเข้าสู่เกม Find Your Hat, ' + name + '!');
 
-await fnCheckMode(typegame);
+            const typegame = await fnTypeGame();
 
+            await fnCheckMode(typegame);
 
+    }
+}
+
+main();
 
 
 
